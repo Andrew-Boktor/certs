@@ -53,15 +53,48 @@
     .actions { justify-content: stretch; }
     a.btn { flex: 1; text-align: center; }
   }
+  /* Poster background and accessible foreground panel */
+  body {
+    background: #253b3a url('example.jpeg') right center / contain no-repeat fixed;
+    color: #fff;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0;
+    background: linear-gradient(180deg, rgba(10,25,30,.30), rgba(10,25,30,.58));
+    pointer-events: none; z-index: 0;
+  }
+  main {
+    position: relative; z-index: 1; margin: min(13vh, 110px) auto 30px 4vw;
+    padding: 30px 25px; border-radius: 22px;
+    background: rgba(14, 31, 33, .76);
+    border: 1px solid rgba(255,255,255,.28);
+    box-shadow: 0 14px 45px rgba(0,0,0,.28);
+    backdrop-filter: blur(7px);
+  }
+  .congratulations {
+    font-size: clamp(1.2rem, 3vw, 1.7rem); font-weight: 700;
+    text-align: center; line-height: 1.9; color: #ffe8a3;
+    margin-bottom: 18px;
+  }
+  h1, p.sub, label, #status { color: #fff; }
+  h1, p.sub { text-align: center; }
+  input[type=search] { background: #fff; color: #1d2b27; }
+  li { color: #1d2b27; background: rgba(255,255,255,.96); }
+  li:hover { background: #eef3f0; }
+  @media (max-width: 600px) {
+    body { background-attachment: fixed; background-position: right center; background-size: contain; }
+    main { margin: 35px auto 35px 12px; width: min(88%, 440px); padding: 22px 16px; }
+  }
 </style>
 </head>
 <body>
 <main>
+  <div class="congratulations">خدمة مدارس الأحد ابتدائي بكنيسة مار يوحنا الحبيب تتقدم لكم بخالص التهاني</div>
   <h1>الحصول على الشهادة</h1>
   <p class="sub">اكتب اسمك كما سُجّل في الشهادة، ثم اضغط «تحميل».</p>
 
   <label for="q">الاسم</label>
-  <input id="q" type="search" placeholder="مثال: أحمد محمد" autocomplete="off" autofocus>
+  <input id="q" type="search" placeholder="مثال: جون يوحنا" autocomplete="off" autofocus>
   <div id="status" aria-live="polite"></div>
   <ul id="results"></ul>
 </main>
